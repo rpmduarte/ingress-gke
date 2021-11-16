@@ -1,0 +1,23 @@
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: abcd-otds-backend
+spec:
+  sessionAffinity:
+    affinityType: "GENERATED_COOKIE"
+    affinityCookieTtlSec: 50
+  timeoutSec: 180
+  connectionDraining:
+    drainingTimeoutSec: 1800
+  logging:
+    enable: false
+    sampleRate: 0.5
+  healthCheck:
+    checkIntervalSec: 8
+    timeoutSec: 5
+    healthyThreshold: 2
+    unhealthyThreshold: 3
+    type: HTTP
+    requestPath: /path
+    port: 8080

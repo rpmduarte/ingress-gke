@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: abcd-ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.global-static-ip-name: abcdpreprod
+    networking.gke.io/v1beta1.FrontendConfig: abcd-frontend-config
+    networking.gke.io/suppress-firewall-xpn-error: "true"
+spec:
+  tls:
+  - hosts:
+    - hostname1.yourdomain.com
+    - hostname2.yourdomain.com
+    - hostname3.yourdomain.com
+    secretName: appcert
+  rules:
+  - host: hostname1.yourdomain.com
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+
+  - host: hostname2.yourdomain.com
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: service2
+            port:
+              number: 80
+
+  - host: hostname3.yourdomain.com
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: service3
+            port:
+              number: 8080
