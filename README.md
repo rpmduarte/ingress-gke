@@ -13,7 +13,7 @@ Add the following annotations in the services you want to expose; see example be
 
 **otcs-frontend service**
 ```yaml
-cloud.google.com/backend-config: '{"ports": {"80": "abcd-backend"}}'
+cloud.google.com/backend-config: '{"ports": {"80": "abcd-cs-backend"}}'
 cloud.google.com/neg: '{"ingress": true}'
 ```
 
